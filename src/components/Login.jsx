@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function Login() {
+function Login({ onLogin }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     const handleSubmit = async event => {
         event.preventDefault();
@@ -15,9 +18,10 @@ function Login() {
                 body: JSON.stringify({ email, password }),
             });
             if (response.ok) {
-                console.log('hell yea')
+                onLogin(true);
+                navigate('/');
             } else {
-                console.log('failed')
+                setError('Wrong email or password');
             }
         } catch (error) {
             console.error('Error logging in:', error);
@@ -27,6 +31,7 @@ function Login() {
     return (
         <div className="max-w-md mx-auto mt-16">
             <h1 className="text-3xl font-bold text-gray-900 mb-4">Login</h1>
+            {error && <p className="text-red-500">{error}</p>}
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">

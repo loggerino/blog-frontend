@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Signup() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async event => {
         event.preventDefault();
@@ -16,7 +18,7 @@ function Signup() {
                 body: JSON.stringify({ username, email, password }),
             });
             if (response.ok) {
-                console.log("success");
+                navigate('/login');
             } else {
                 console.log("failed");
             }
