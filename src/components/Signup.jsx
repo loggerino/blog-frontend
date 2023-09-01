@@ -5,6 +5,7 @@ function Signup() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     const handleSubmit = async event => {
@@ -20,7 +21,7 @@ function Signup() {
             if (response.ok) {
                 navigate('/login');
             } else {
-                console.log("failed");
+                setError('Email already exists');
             }
         } catch (error) {
             console.error('Error signing up:', error);
@@ -30,6 +31,7 @@ function Signup() {
     return (
         <div className="max-w-md mx-auto mt-16">
             <h1 className="text-3xl font-bold text-gray-900 mb-4">Sign Up</h1>
+            {error && <p className="text-red-500">{error}</p>}
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">
                     <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
