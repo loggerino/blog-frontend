@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import PostCard from './PostCard'; // Create this component
+import PostCard from './PostCard';
 
 function Home() {
     const [posts, setPosts] = useState([]);
@@ -12,9 +12,9 @@ function Home() {
     }, []);
 
     return (
-        <div>
-            <h1>Blog Posts</h1>
-            <div className="post-list">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 className="text-3xl font-bold text-gray-900">Blog Posts</h1>
+            <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 {posts.map(post => (
                     <PostCard key={post._id} post={post} />
                 ))}
