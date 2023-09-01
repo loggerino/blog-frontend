@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function PostCard({ post }) {
     return (
-        <div className="bg-white overflow-hidden shadow rounded-lg">
+        <div className="bg-blue-100 overflow-hidden shadow rounded-lg">
             <div className="p-5">
                 <h2 className="text-lg font-medium text-gray-900 truncate">{post.title}</h2>
                 <p className="mt-1 text-sm text-gray-500">{post.content}</p>
