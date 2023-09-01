@@ -1,27 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './components/Home';
+import PostDetail from './components/PostDetail';
+import CreatePostForm from './components/CreatePostForm';
+import CommentForm from './components/CommentForm';
 
 function App() {
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    fetch('https://blogapi-nine.vercel.app/api/posts/all')
-      .then(response => response.json())
-      .then(data => setPosts(data))
-      .catch(error => console.error('Error fetching posts:', error));
-  }, []);
-
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">Blog Posts</h1>
-      <ol>
-        {posts.map(post => (
-          <>
-            <li key={post._id}>{post.title}</li>
-            <p key={post._id}>{post.content}</p>
-          </>
-        ))}
-      </ol>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/posts/post/:id" element={<PostDetail />} />
+      </Routes>
+    </Router>
   );
 }
 
