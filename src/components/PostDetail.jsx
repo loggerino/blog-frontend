@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import CommentSection from './CommentSection';
-import CommentForm from './CommentForm';
 
 function PostDetail() {
     const [post, setPost] = useState(null);
@@ -49,8 +48,7 @@ function PostDetail() {
                 <h2 className="text-xl font-bold text-gray-900">Tags</h2>
             </div>
             <div className="mt-6">
-                <CommentSection comments={post.comments} />
-                <CommentForm postId={id} />
+                <CommentSection postId={id} initialComments={post.comments} />
             </div>
         </div>
     );

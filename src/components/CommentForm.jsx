@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function CommentForm({ postId }) {
+function CommentForm({ postId, onNewComment }) {
     const [content, setContent] = useState('');
     const jwt = localStorage.getItem('jwt');
     const [showLoginNotice, setShowLoginNotice] = useState(false);
@@ -21,6 +21,7 @@ function CommentForm({ postId }) {
             });
             if (response.ok) {
                 setContent('');
+                onNewComment(await response.json());
             } else {
                 console.log('Comment submission failed:', response.status, response.statusText);
                 const data = await response.json();

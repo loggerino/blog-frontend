@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
+import CommentForm from './CommentForm';
 
-function CommentSection({ comments }) {
-    console.log('Comments:', comments);
+function CommentSection({ postId, initialComments }) {
+    const [comments, setComments] = useState(initialComments);
+
+    const handleNewComment = comment => {
+        setComments(comments => [...comments, comment]);
+    };
+
     return (
         <div className="comment-section">
             <h3 className="text-lg font-medium text-gray-900">Comments</h3>
@@ -17,6 +23,7 @@ function CommentSection({ comments }) {
                     );
                 })}
             </ul>
+            <CommentForm postId={postId} onNewComment={handleNewComment} />
         </div>
     );
 }
