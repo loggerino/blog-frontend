@@ -5,8 +5,6 @@ function CommentForm({ postId }) {
     const jwt = localStorage.getItem('jwt');
     const handleSubmit = async event => {
         event.preventDefault();
-        console.log('Submitting comment for post:', postId);
-        console.log(jwt);
         try {
             const response = await fetch(`http://localhost:5000/api/posts/post/${postId}/comment`, {
                 method: 'POST',

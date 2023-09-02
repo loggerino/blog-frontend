@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 function Header({ isLoggedIn, onLogout }) {
     const handleLogout = () => {
+        localStorage.removeItem('jwt');
         onLogout(false);
     };
 
