@@ -1,10 +1,31 @@
 import React, { useState } from 'react';
 
-function CommentForm() {
+function CommentForm({ postId }) {
     const [content, setContent] = useState('');
-
-    const handleSubmit = event => {
+    const jwt = localStorage.getItem('jwt');
+    const handleSubmit = async event => {
         event.preventDefault();
+        console.log('Submitting comment for post:', postId);
+        console.log(jwt);
+        try {
+            const response = await fetch(`http://localhost:5000/api/posts/post/${postId}/comment`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${jwt}`,
+                },
+                body: JSON.stringify({ content }),
+            });
+            if (response.ok) {
+                setContent('');
+            } else {
+                console.log('Comment submission failed:', response.status, response.statusText);
+                const data = await response.json();
+                console.log('Server response:', data);
+            }
+        } catch (error) {
+            console.error('Error submitting comment:', error);
+        }
     };
 
     return (

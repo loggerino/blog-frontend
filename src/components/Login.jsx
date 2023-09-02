@@ -10,7 +10,7 @@ function Login({ onLogin }) {
     const handleSubmit = async event => {
         event.preventDefault();
         try {
-            const response = await fetch('https://blogapi-nine.vercel.app/api/login', {
+            const response = await fetch('http://localhost:5000/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -18,6 +18,9 @@ function Login({ onLogin }) {
                 body: JSON.stringify({ email, password }),
             });
             if (response.ok) {
+                const data = await response.json();
+                console.log('Login response data:', data);
+                localStorage.setItem('jwt', data.token);
                 onLogin(true);
                 navigate('/');
             } else {
