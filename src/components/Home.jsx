@@ -6,7 +6,7 @@ function Home() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/posts/all')
+        fetch('https://blogapi-nine.vercel.app/api/posts/all')
             .then(response => response.json())
             .then(data => {
                 setPosts(data);

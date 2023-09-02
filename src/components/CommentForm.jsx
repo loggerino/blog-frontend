@@ -11,7 +11,7 @@ function CommentForm({ postId }) {
             return;
         }
         try {
-            const response = await fetch(`http://localhost:5000/api/posts/post/${postId}/comment`, {
+            const response = await fetch(`https://blogapi-nine.vercel.app/api/posts/post/${postId}/comment`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

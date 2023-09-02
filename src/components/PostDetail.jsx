@@ -8,7 +8,7 @@ function PostDetail() {
     const { id } = useParams();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/api/posts/post/${id}`)
+        fetch(`https://blogapi-nine.vercel.app/api/posts/post/${id}`)
             .then(response => response.json())
             .then(data => setPost(data))
             .catch(error => console.error('Error fetching post:', error));
