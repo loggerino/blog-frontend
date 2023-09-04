@@ -13,7 +13,6 @@ function CommentSection({ postId, initialComments }) {
             <h3 className="text-lg font-medium text-gray-900">Comments</h3>
             <ul className="mt-4 space-y-4">
                 {comments.map(comment => {
-                    console.log(comment.user.username);
                     const date = new Date(comment.timestamp).toLocaleDateString();
                     return (
                         <li key={comment._id} className="bg-gray-50 rounded-md p-4">
